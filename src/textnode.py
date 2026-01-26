@@ -1,4 +1,5 @@
 from enum import Enum
+from htmlnode import LeafNode
 
 
 class TextType(Enum):
@@ -8,6 +9,10 @@ class TextType(Enum):
     CODE = "code"
     LINK = "link"
     IMAGE = "image"
+
+
+def text_node_to_html_node(text_node):
+    pass
 
 
 class TextNode:
