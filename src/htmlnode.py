@@ -9,6 +9,7 @@ class HTMLNode:
         raise NotImplementedError("to_html method not implemented")
 
     def props_to_html(self):
+        """Rel, href etc. parser to HTML tags"""
         if self.props is None:
             return ""
         props_html = ""
@@ -25,6 +26,7 @@ class LeafNode(HTMLNode):
         super().__init__(tag, value, None, props)
 
     def to_html(self):
+        """Leaf Node to HTML (no children)"""
         if self.value is None:
             raise ValueError("Invalid HTML: no value")
         if self.tag is None:
@@ -40,6 +42,7 @@ class ParentNode(HTMLNode):
         super().__init__(tag, None, children, props)
 
     def to_html(self):
+        """Parent Node to HTML (recursive)"""
         if self.tag is None:
             raise ValueError("Invalid HTML: no tag")
         if self.children is None:
