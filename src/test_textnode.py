@@ -2,6 +2,7 @@ import unittest
 
 from textnode import TextNode, TextType, text_node_to_html_node
 from htmlnode import HTMLNode
+from inline_markdown import split_nodes_delimiter
 
 
 class TestTextNode(unittest.TestCase):
@@ -73,6 +74,50 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("This is an invalid text node", "invalid type")
         with self.assertRaises(ValueError):
             text_node_to_html_node(node)
+
+    def test_inline_markdown_delimiter_split(self):
+        node = TextNode("This is text with a `code block` word", TextType.TEXT)
+        new_nodes = split_nodes_delimiter([node], "`", TextType.CODE)
+        self.assertEqual(
+            new_nodes,
+            [
+                TextNode("This is text with a ", TextType.TEXT),
+                TextNode("code block", TextType.CODE),
+                TextNode(" word", TextType.TEXT),
+            ],
+        )
+
+    def test_inline_markdown_invalid_delimiter(self):
+        node = TextNode("This is **broken text", TextType.TEXT)
+        with self.assertRaises(Exception):
+            split_nodes_delimiter([node], "**", TextType.BOLD)
+
+    def test_inline_markdown_multiple_delimiter_splits(self):
+        node = TextNode("**Hello** Text **Greetings**", TextType.TEXT)
+        new_nodes = split_nodes_delimiter([node], "**", TextType.BOLD)
+        self.assertEqual(
+            new_nodes,
+            [
+                TextNode("Hello", TextType.BOLD),
+                TextNode(" Text ", TextType.TEXT),
+                TextNode("Greetings", TextType.BOLD),
+            ],
+        )
+
+    def test_inline_markdown_multiple_nodes(self):
+        node = [
+            TextNode("before **x**", TextType.TEXT),
+            TextNode("keep", TextType.BOLD),
+        ]
+        new_nodes = split_nodes_delimiter(node, "**", TextType.BOLD)
+        self.assertEqual(
+            new_nodes,
+            [
+                TextNode("before ", TextType.TEXT),
+                TextNode("x", TextType.BOLD),
+                TextNode("keep", TextType.BOLD),
+            ],
+        )
 
 
 if __name__ == "__main__":
