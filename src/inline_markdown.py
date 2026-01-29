@@ -34,50 +34,54 @@ def extract_markdown_links(text):
 
 
 def split_nodes_image(old_nodes):
-    regex_extracted_nodes = []
     new_nodes = []
     original_text = ""
     for node in old_nodes:
-        regex_extracted_nodes = extract_markdown_images(node.text)
-        if not regex_extracted_nodes:
+        if node.text_type != TextType.TEXT:
             new_nodes.append(node)
-        else:
-            original_text = node.text
-            split_text = []
-            for image in regex_extracted_nodes:
-                split_text = original_text.split(f"![{image[0]}]({image[1]})", 1)
-                if split_text[0]:
-                    new_node = TextNode(split_text[0], TextType.TEXT)
-                    new_nodes.append(new_node)
-                new_node = TextNode(image[0], TextType.IMAGE, image[1])
+            continue
+        original_text = node.text
+        images = extract_markdown_images(original_text)
+        if len(images) == 0:
+            new_nodes.append(node)
+            continue
+        for image in images:
+            split_text = original_text.split(f"![{image[0]}]({image[1]})", 1)
+            if len(split_text) != 2:
+                raise ValueError("Invalid markdown, image section not closed")
+            if split_text[0] != "":
+                new_node = TextNode(split_text[0], TextType.TEXT)
                 new_nodes.append(new_node)
-                original_text = split_text[1]
-            if original_text:
-                new_node = TextNode(original_text, TextType.TEXT)
-                new_nodes.append(new_node)
+            new_node = TextNode(image[0], TextType.IMAGE, image[1])
+            new_nodes.append(new_node)
+            original_text = split_text[1]
+        if original_text != "":
+            new_node = TextNode(original_text, TextType.TEXT)
+            new_nodes.append(new_node)
     return new_nodes
 
 
 def split_nodes_link(old_nodes):
-    regex_extracted_nodes = []
     new_nodes = []
-    original_text = ""
     for node in old_nodes:
-        regex_extracted_nodes = extract_markdown_links(node.text)
-        if not regex_extracted_nodes:
+        if node.text_type != TextType.TEXT:
             new_nodes.append(node)
-        else:
-            original_text = node.text
-            split_text = []
-            for link in regex_extracted_nodes:
-                split_text = original_text.split(f"[{link[0]}]({link[1]})", 1)
-                if split_text[0]:
-                    new_node = TextNode(split_text[0], TextType.TEXT)
-                    new_nodes.append(new_node)
-                new_node = TextNode(link[0], TextType.LINK, link[1])
+            continue
+        original_text = node.text
+        links = extract_markdown_links(original_text)
+        if len(links) == 0:
+            new_nodes.append(node)
+        for link in links:
+            split_text = original_text.split(f"[{link[0]}]({link[1]})", 1)
+            if len(split_text) != 2:
+                raise ValueError("invalid markdown, link section not closed")
+            if split_text[0] != "":
+                new_node = TextNode(split_text[0], TextType.TEXT)
                 new_nodes.append(new_node)
-                original_text = split_text[1]
-        if original_text:
+            new_node = TextNode(link[0], TextType.LINK, link[1])
+            new_nodes.append(new_node)
+            original_text = split_text[1]
+        if original_text != "":
             new_node = TextNode(original_text, TextType.TEXT)
             new_nodes.append(new_node)
     return new_nodes
