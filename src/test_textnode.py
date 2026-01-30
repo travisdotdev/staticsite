@@ -2,6 +2,7 @@ import unittest
 
 from textnode import TextNode, TextType, text_node_to_html_node
 from htmlnode import HTMLNode
+from markdown_blocks import markdown_to_blocks
 from inline_markdown import (
     split_nodes_delimiter,
     extract_markdown_images,
