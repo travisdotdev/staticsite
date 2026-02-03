@@ -44,22 +44,18 @@ This is the same paragraph on a new line
         )
 
     def test_blocktype_ordered_list(self):
-        block = """
-1. hey hey hey
+        block = """1. hey hey hey
 2. right hello Hi
 3. Greetings bonjour23910
-4. Hello
-"""
+4. Hello"""
         result = block_to_block_type(block)
         self.assertEqual(result, BlockType.ORDERED_LIST)
 
     def test_blocktype_invalid_ordered_list(self):
-        block = """
-1. hey hey hey
+        block = """1. hey hey hey
 2. right hello Hi
 31. Greetings bonjour23910
-4. Hello
-"""
+4. Hello"""
         result = block_to_block_type(block)
         self.assertEqual(result, BlockType.PARAGRAPH)
 
@@ -76,22 +72,18 @@ print(this_is_code)
         self.assertEqual(result, BlockType.CODE)
 
     def test_blocktype_quote(self):
-        block = """
->these are quotes
+        block = """>these are quotes
 >hello world
 >testing testing
-> for i am become death destroyer of worlds -Vishnu 
-"""
+> for i am become death destroyer of worlds -Vishnu """
         result = block_to_block_type(block)
         self.assertEqual(result, BlockType.QUOTE)
 
     def test_blocktype_unordered_list(self):
-        block = """
-- these are quotes
+        block = """- these are quotes
 - hello world
 - testing testing
-- for i am become death destroyer of worlds -Vishnu 
-"""
+- for i am become death destroyer of worlds -Vishnu"""
         result = block_to_block_type(block)
         self.assertEqual(result, BlockType.UNORDERED_LIST)
 

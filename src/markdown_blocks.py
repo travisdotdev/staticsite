@@ -22,42 +22,26 @@ def markdown_to_blocks(markdown):
 
 
 def block_to_block_type(block):
-    split_block = block.strip().split(" ", 1)
-    is_heading = (
-        len(split_block) == 2
-        and 1 <= len(split_block[0]) <= 6
-        and all(char == "#" for char in split_block[0])
-        and split_block[1].strip != ""
-    )
-    if is_heading:
+    lines = block.split("\n")
+    if block.startswith(("# ", "## ", "### ", "#### ", "##### ", "###### ")):
         return BlockType.HEADING
-    is_code = block.startswith("```\n") and block.endswith("```")
-    if is_code:
+    if len(lines) > 1 and lines[0].startswith("```") and lines[-1].startswith("```"):
         return BlockType.CODE
-    split_block = block.strip().split("\n")
-    is_quote = [line.startswith(">") for line in split_block]
-    if all(is_quote):
+    if block.startswith(">"):
+        for line in lines:
+            if not line.startswith(">") and line != "":
+                return BlockType.PARAGRAPH
         return BlockType.QUOTE
-    split_block = block.strip().split("\n")
-    is_unordered_list = [line.startswith("- ") for line in split_block]
-    if all(is_unordered_list):
+    if block.startswith("- "):
+        for line in lines:
+            if not line.startswith("- "):
+                return BlockType.PARAGRAPH
         return BlockType.UNORDERED_LIST
-    split_block = block.strip().split("\n")
-    split_block2 = []
-    fullstop_present = False
-    incrementing_by_one = False
-    incrementing_list = []
-    for line in split_block:
-        split_block2.append(line.strip().split(" ", 1))
-    for line2 in split_block2:
-        if not line2[0].endswith("."):
-            fullstop_present = False
-        else:
-            fullstop_present = True
-        incrementing_list.append(int(line2[0].strip(".")))
-    if incrementing_list == list(range(1, len(incrementing_list) + 1)):
-        incrementing_by_one = True
-    is_ordered_list = incrementing_by_one and fullstop_present
-    if is_ordered_list:
+    if block.startswith("1. "):
+        i = 1
+        for line in lines:
+            if not line.startswith(f"{i}. "):
+                return BlockType.PARAGRAPH
+            i += 1
         return BlockType.ORDERED_LIST
     return BlockType.PARAGRAPH
