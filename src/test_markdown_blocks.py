@@ -87,16 +87,14 @@ print(this_is_code)
         result = block_to_block_type(block)
         self.assertEqual(result, BlockType.UNORDERED_LIST)
 
-        #     def test_blocktype_paragraph(self):
-        #         block = """
-        # 1.HELLO
-        # 3.greetings
-        # - wow
-        # > neo
-        # ````
-        # """
-        # result = block_to_block_type(block)
-        # self.assertEqual(result, BlockType.PARAGRAPH)
+    def test_blocktype_paragraph(self):
+        block = """ 1.HELLO
+3.greetings
+- wow
+> neo
+````"""
+        result = block_to_block_type(block)
+        self.assertEqual(result, BlockType.PARAGRAPH)
 
 
 if __name__ == "__main__":
