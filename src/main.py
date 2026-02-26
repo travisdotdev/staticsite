@@ -1,16 +1,12 @@
-import os
-import shutil
+from copystatic import copy_files_recursive, clean_up_structure
 
-dir_path_static = "./static"
-dir_path_public = "./public"
+STATIC_PATH = "./static"
+DESTINATION_PATH = "./public"
 
 
 def main():
-    print("Deleting public directory...")
-    if os.path.exists(dir_path_public):
-        shutil.rmtree(dir_path_public)
-
-    print("Copying static files to public...")
+    clean_up_structure(DESTINATION_PATH)
+    copy_files_recursive(STATIC_PATH, DESTINATION_PATH)
 
 
 if __name__ == "__main__":

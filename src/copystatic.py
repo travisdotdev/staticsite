@@ -1,24 +1,24 @@
 import os
 import shutil
 
-dir_path_destination = "../public"
-dir_path_source = "../static"
 
-if not os.path.exists(dir_path_destination):
-    os.mkdir(dir_path_destination)
+def clean_up_structure(destination):
+    if os.path.exists(destination):
+        print("Deleting pre-existing public directory")
+        shutil.rmtree(destination)
+    print("Creating new public directory")
+    os.mkdir(destination)
 
 
 def copy_files_recursive(source, destination):
     if not os.path.exists(destination):
+        print(f"Path {destination} created")
         os.mkdir(destination)
-    print(os.listdir(source))
-    for directory in os.listdir(source):
-        if "." in directory:
-            shutil.copy(directory, destination)
+    for entry in os.listdir(source):
+        source_path = os.path.join(source, entry)
+        if os.path.isfile(source_path):
+            print(f"File at: {source_path} copied to {destination}")
+            shutil.copy(source_path, destination)
         else:
-            destination_path = os.path.join(dir_path_destination, directory)
-            source_path = os.path.join(dir_path_source, directory)
+            destination_path = os.path.join(destination, entry)
             copy_files_recursive(source_path, destination_path)
-
-
-copy_files_recursive(dir_path_source, dir_path_destination)
