@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>⚡ Static Site Generator</title>
+    <link href="/index.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <article><div><h1>⚡ Static Site Generator</h1><p><i>Python · HTML/CSS · Markdown</i></p><p>A command-line tool that transforms Markdown files into a fully rendered HTML website — built from scratch in pure Python 3, with no third-party parsing libraries.</p><p><a href="https://github.com/travisdotdev/staticsite">View on GitHub</a></p><h2>How it works</h2><p>The parser runs in two passes:</p><ol><li><b>Block-level</b> — splits the document into typed segments: headings, code fences, blockquotes, lists, and paragraphs</li><li><b>Inline-level</b> — recursively resolves bold, italic, inline code, links, and images within each block</li></ol><p>The resulting tree of <code>HTMLNode</code> objects is then rendered to a string and injected into a <code>template.html</code> layout via a <code>{{ Content }}</code> placeholder.</p><h2>Features</h2><ul><li>Custom HTML node system (<code>HTMLNode</code>, <code>LeafNode</code>, <code>ParentNode</code>) for tree-based rendering</li><li>Recursive page generation — walks the entire <code>content/</code> directory and mirrors the structure in <code>public/</code></li><li>Automated build pipeline — cleans, syncs static assets, and regenerates on every run</li><li>No external dependencies</li></ul><h2>Running it locally</h2><pre><code>git clone https://github.com/travisdotdev/staticsite.git
+cd staticsite
+python3 src/main.py
+python3 -m http.server 8888 --directory public
+</code></pre><p><a href="/projects">← Projects</a></p></div></article>
+  </body>
+</html>

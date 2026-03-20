@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🌱 WattPrint — HackEurope</title>
+    <link href="/index.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <article><div><h1>🌱 WattPrint — HackEurope</h1><p><img src="/images/wattprintdashboard.png" alt="LandingPage"></img> <i>React · Node.js · Stripe · AWS Lambda · Supabase</i></p><p>A carbon emissions tracking platform built at HackEurope. Tracks device energy usage, processes carbon offset purchases via Stripe Climate, and visualises everything through a React dashboard.</p><p><a href="https://github.com/travisdotdev/WattPrint-HackEurope">View on GitHub</a></p><h2>What it does</h2><ul><li>Fetches live Stripe Climate pricing per metric ton of carbon</li><li>Runs Stripe Checkout in test mode and tracks paid emissions via webhook</li><li>Automatically creates a Stripe Climate order when 5 tons are accumulated</li><li>Renders a React dashboard with summary cards, charts, breakdowns, exports, and receipts</li><li>Ingests device energy metrics (JSON/JSONL) into Supabase Postgres via an AWS Lambda handler</li><li>Includes a silent Windows client that reports hourly device energy usage automatically</li></ul><h2>Architecture</h2><p>The project has three main components:</p><p><b>Backend (Node.js)</b> — handles Stripe webhooks, accumulates emission totals, and exposes dashboard APIs.</p><p><b>React Dashboard</b> — visualises energy data with filtering by team, service, user, device, and region. Pulls live data from Supabase if configured, otherwise falls back to mock data.</p><p><b>AWS Lambda</b> — a serverless metrics ingestion handler that accepts JSON or JSONL payloads and writes to a Supabase Postgres table.</p><h2>Windows Client</h2><p>A lightweight background agent that silently collects laptop battery drain and grid zone data, reporting hourly to the dashboard.</p><p><a href="/projects">← Projects</a></p></div></article>
+  </body>
+</html>

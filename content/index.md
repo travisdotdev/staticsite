@@ -1,46 +1,25 @@
-# Tolkien Fan Club
+![hero](/images/code.jpg)
 
-![JRR Tolkien sitting](/images/tolkien.png)
+# Travis
 
-Here's the deal, **I like Tolkien**.
+**Software Engineer · Full-Stack · Ireland**
 
-> "I am in fact a Hobbit in all but size."
->
-> -- J.R.R. Tolkien
+[GitHub](https://github.com/travisdotdev)
 
-## Blog posts
+> 🚧 Full portfolio coming soon — check back later.
 
-- [Why Glorfindel is More Impressive than Legolas](/blog/glorfindel)
-- [Why Tom Bombadil Was a Mistake](/blog/tom)
-- [The Unparalleled Majesty of "The Lord of the Rings"](/blog/majesty)
+## About
 
-## Reasons I like Tolkien
+CS student.
 
-- You can spend years studying the legendarium and still not understand its depths
-- It can be enjoyed by children and adults alike
-- Disney _didn't ruin it_ (okay, but Amazon might have)
-- It created an entirely new genre of fantasy
+I like building things from scratch and diving past abstraction layers.
 
-## My favorite characters (in order)
+## Projects
 
-1. Gandalf
-2. Bilbo
-3. Sam
-4. Glorfindel
-5. Galadriel
-6. Elrond
-7. Thorin
-8. Sauron
-9. Aragorn
+[Projects](/projects)
 
-Here's what `elflang` looks like (the perfect coding language):
+## Skills
 
-```
-func main(){
-    fmt.Println("Aiya, Ambar!")
-}
-```
+Python · JavaScript · React · Docker · FastAPI · SQL
 
-Want to get in touch? [Contact me here](/contact).
-
-This site was generated with a custom-built [static site generator](https://www.boot.dev/courses/build-static-site-generator-python) from the course on [Boot.dev](https://www.boot.dev).
+_More coming soon._
