@@ -13,7 +13,7 @@ def extract_title(markdown):
     raise ValueError("Title not found")
 
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, base_path):
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
     with open(from_path, "r", encoding="utf-8") as f:
         markdown = f.read()
@@ -23,6 +23,8 @@ def generate_page(from_path, template_path, dest_path):
         html_file = f2.read()
     html_file = html_file.replace("{{ Title }}", title)
     html_file = html_file.replace("{{ Content }}", md_to_html.to_html())
+    html_file = html_file.replace('href="/', f'href="{base_path}')
+    html_file = html_file.replace('src="/', f'src="{base_path}')
     parent = os.path.dirname(dest_path)
     if parent:
         os.makedirs(parent, exist_ok=True)
@@ -31,7 +33,7 @@ def generate_page(from_path, template_path, dest_path):
     print("HTML File Created")
 
 
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, base_path):
     if not os.path.exists(dest_dir_path):
         os.mkdir(dest_dir_path)
         print(f"Path {dest_dir_path} created")
@@ -40,10 +42,12 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
         if os.path.isfile(source_path) and source_path.endswith(".md"):
             print(f"Markdown File found at: {source_path} copied to {dest_dir_path}")
             html_path = os.path.join(dest_dir_path, f"{entry.replace('.md', '.html')}")
-            generate_page(source_path, template_path, html_path)
+            generate_page(source_path, template_path, html_path, base_path)
         elif os.path.isdir(source_path):
             destination_path = os.path.join(dest_dir_path, entry)
-            generate_pages_recursive(source_path, template_path, destination_path)
+            generate_pages_recursive(
+                source_path, template_path, destination_path, base_path
+            )
 
 
 def copy_files_recursive(source, destination):
