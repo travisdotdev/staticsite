@@ -2,24 +2,19 @@
 
 # Travis
 
-**Software Engineer · Full-Stack · Ireland**
+**Aspiring Software Engineer · Full-Stack · Ireland**
 
 [GitHub](https://github.com/travisdotdev)
 
-> 🚧 Full portfolio coming soon — check back later.
+[Projects](/projects)
 
 ## About
 
-CS student.
-
+CS and Business student.
 I like building things from scratch and diving past abstraction layers.
-
-## Projects
-
-[Projects](/projects)
 
 ## Skills
 
 Python · JavaScript · React · Docker · FastAPI · SQL
 
-_More coming soon._
+> 🚧 Full portfolio coming soon — check back later.
