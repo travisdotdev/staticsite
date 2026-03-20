@@ -1,17 +1,16 @@
 from copystatic import copy_files_recursive, clean_up_structure
-from gencontent import extract_title, generate_page
+from gencontent import generate_pages_recursive
 
 STATIC_PATH = "./static"
 DESTINATION_PATH = "./public"
-DESTINATION_PATH_HTML = "./public/index.html"
 HTML_TEMPLATE_PATH = "./template.html"
-MARKDOWN_PATH = "./content/index.md"
+CONTENT_PATH = "./content"
 
 
 def main():
     clean_up_structure(DESTINATION_PATH)
     copy_files_recursive(STATIC_PATH, DESTINATION_PATH)
-    generate_page(MARKDOWN_PATH, HTML_TEMPLATE_PATH, DESTINATION_PATH_HTML)
+    generate_pages_recursive(CONTENT_PATH, HTML_TEMPLATE_PATH, DESTINATION_PATH)
 
 
 if __name__ == "__main__":
