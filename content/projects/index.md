@@ -24,4 +24,12 @@ A CLI agent that uses LLM function calling to autonomously navigate directories,
 
 [GitHub](https://github.com/travisdotdev/aiagent)
 
-[← Home](/)
+🐚 chell
+
+C · POSIX · Linux
+
+A minimal Unix shell written from scratch in C. Built to understand how shells actually work, using raw fork, execvp, and wait instead of delegating to system().
+
+Read more · GitHub
+
+← Home
