@@ -8,6 +8,14 @@ A custom static site generator built from scratch — no third-party parsing lib
 
 [Read more](/staticsite) · [GitHub](https://github.com/travisdotdev/staticsite)
 
+### 🐚 Chell
+
+C · POSIX · Linux
+
+A minimal Unix shell written from scratch in C. Built to understand how shells actually work, using raw fork, execvp, and wait instead of delegating to system().
+
+[Read more](/chell) · [GitHub](https://github.com/travisdotdev/chell)
+
 ### 🌱 WattPrint — HackEurope
 
 _React · Node.js · Stripe · AWS Lambda · Supabase_
@@ -24,12 +32,4 @@ A CLI agent that uses LLM function calling to autonomously navigate directories,
 
 [GitHub](https://github.com/travisdotdev/aiagent)
 
-🐚 chell
 
-C · POSIX · Linux
-
-A minimal Unix shell written from scratch in C. Built to understand how shells actually work, using raw fork, execvp, and wait instead of delegating to system().
-
-Read more · GitHub
-
-← Home
