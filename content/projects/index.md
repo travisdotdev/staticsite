@@ -10,7 +10,7 @@ A custom static site generator built from scratch — no third-party parsing lib
 
 ### 🐚 Chell
 
-C · POSIX · Linux
+_C · POSIX · Linux_
 
 A minimal Unix shell written from scratch in C. Built to understand how shells actually work, using raw fork, execvp, and wait instead of delegating to system().
 
@@ -32,4 +32,13 @@ A CLI agent that uses LLM function calling to autonomously navigate directories,
 
 [GitHub](https://github.com/travisdotdev/aiagent)
 
+### ❄️ NixOS Dotfiles
 
+ _Nix · Home Manager · Hyprland · Lua_
+
+ A declarative NixOS setup for a minimal, terminal focused Hyprland desktop, built from scratch with flakes and Home Manager.
+
+ [Read more](/nixos-dotfiles) · [GitHub](https://github.com/travisdotdev/nixos-dotfiles)
+
+ [← Home](/)
+ 

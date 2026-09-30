@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>❄️ NixOS Dotfiles</title>
+    <link href="/index.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <article><div><h1>❄️ NixOS Dotfiles</h1><p><img src="/images/nixos-desktop.jpg" alt="Desktop"></img></p><p><i>Nix · Home Manager · Hyprland · Lua</i></p><p>A declarative NixOS configuration for a Hyprland desktop, managed with flakes and Home Manager. Built from scratch rather than forked, and kept deliberately minimal with a terminal-focused workflow.</p><p><a href="https://github.com/travisdotdev/nixos-dotfiles">View on GitHub</a></p><h2>What's in it</h2><ul><li><b>Compositor</b> — Hyprland (with XWayland)</li><li><b>Bar</b> — Waybar</li><li><b>Terminal</b> — foot</li><li><b>Launcher</b> — fuzzel</li><li><b>Editor</b> — Neovim</li><li><b>File manager</b> — yazi</li><li><b>Display manager</b> — SDDM (Wayland, Catppuccin Mocha)</li><li><b>Lock / idle</b> — hyprlock and hypridle</li><li><b>Audio</b> — PipeWire with ALSA and PulseAudio compatibility</li></ul><h2>Structure</h2><p>The system is split between Nix and native config files. Anything Nix can express declaratively lives in <code>home.nix</code>, while programs with their own config languages keep their native files under <code>config/</code>.</p><pre><code>nixos-dotfiles/
+├── flake.nix                   # inputs and the system definition
+├── configuration.nix           # system-level config
+├── hardware-configuration.nix  # generated, machine-specific
+├── home.nix                    # user environment via Home Manager
+└── config/                     # symlinked into ~/.config
+    ├── hypr/
+    ├── nvim/
+    ├── waybar/
+    ├── foot/
+    └── fuzzel/
+</code></pre><h2>Editing without rebuilding</h2><p>Normally Home Manager copies config files into the read-only Nix store, so every tweak to a Lua or INI file means a full rebuild. Instead, <code>config/</code> is linked into <code>~/.config</code> with out of store symlinks that point straight at the working tree:</p><pre><code>create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+xdg.configFile = builtins.mapAttrs (name: subpath: {
+  source = create_symlink "${dotfiles}/${subpath}";
+  recursive = true;
+}) configs;
+</code></pre><p>Edits take effect immediately while everything stays under version control. The trade off is that these files aren't part of a system generation, so a rollback won't undo them. Git covers that instead.</p><h2>Fixing Bluetooth audio</h2><p>By default PipeWire lets the laptop act as a Bluetooth speaker, so headsets connected as an audio source instead of an output and produced no sound. Restricting the Bluetooth roles in WirePlumber fixes it, at the cost of the laptop no longer working as a speaker for a phone:</p><pre><code>wireplumber.extraConfig."51-bluez-roles" = {
+  "monitor.bluez.properties" = {
+    "bluez5.roles" = [ "a2dp_source" "hsp_ag" "hfp_ag" ];
+  };
+};
+</code></pre><h2>Housekeeping</h2><ul><li>One command rebuilds the whole system, aliased to <code>rebuild</code></li><li>Garbage collection runs weekly with 30-day retention</li><li>Store optimisation is automatic, so nothing needs cleaning by hand</li></ul><blockquote>Not intended as a drop-in config the hardware file and username are specific to this machine. It's more useful as a reference for how the pieces fit together.</blockquote><p><a href="/projects">← Projects</a></p></div></article>
+  </body>
+</html>
