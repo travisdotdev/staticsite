@@ -1,130 +1,309 @@
-body {
-  background-color: #1f1c25;
-  color: #f0e6d1;
-  font-family: "Luminari", "Georgia", serif;
-  line-height: 1.7;
-  margin: 0;
-  padding: 20px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+/* Nova — the page as a Neovim buffer, based on base16-nova */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+
+:root {
+  --bg: #242e34; /* darker than nova's base00 for contrast */
+  --bg-deep: #1b2328; /* code blocks, statusline */
+  --gutter-line: #33414a;
+  --line-nr: #556873;
+  --comment: #899ba6;
+  --text: #d5e1e8;
+  --code-text: #e2ebf1;
+  --title: #4f8be0; /* h1 */
+  --heading: #4f8be0; /* h2 */
+  --subheading: #f2c38f; /* h3 */
+  --link: #5b94e6;
+  --link-hover: #a8ce93;
+  --green: #a8ce93;
+  --peach: #f2c38f;
+  --purple: #8a7cf0;
+  --selection: #3e5160;
 }
 
-b {
-  font-weight: 900;
+html {
+  font-size: 15px;
 }
+
+body {
+  margin: 0;
+  padding: 0 0 48px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "JetBrains Mono", ui-monospace, "DejaVu Sans Mono", monospace;
+  line-height: 1.7rem;
+}
+
+::selection {
+  background: var(--selection);
+  color: #fff;
+}
+
+/* ---------- buffer + line-number gutter ---------- */
+
+article {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 48px 24px 32px 72px;
+}
+
+article > div {
+  counter-reset: ln;
+  border-left: 1px solid var(--gutter-line);
+  padding-left: 28px;
+}
+
+article > div > * {
+  position: relative;
+  counter-increment: ln;
+}
+
+article > div > *::after {
+  content: counter(ln);
+  position: absolute;
+  top: var(--gt, 0);
+  left: -80px;
+  width: 36px;
+  text-align: right;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: var(--gl, 1.7rem);
+  color: var(--line-nr);
+  pointer-events: none;
+}
+
+/* offset the numbers by the block's own left border */
+article > div > pre::after {
+  left: -81px;
+}
+
+article > div > blockquote::after {
+  left: -83px;
+}
+
+/* "cursorline": the hovered block's number lights up */
+article > div > *:hover::after {
+  color: var(--peach);
+}
+
+/* tildes past the end of the buffer */
+article > div > *:last-child {
+  margin-bottom: 1.2rem;
+}
+
+article::after {
+  content: "~\A~\A~";
+  white-space: pre;
+  display: block;
+  margin-left: -51px;
+  width: 36px;
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--line-nr);
+}
+
+/* ---------- headings ---------- */
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #dda15e;
-  margin-top: 24px;
-  margin-bottom: 16px;
-  text-shadow: 2px 2px 4px #000;
+h3 {
+  font-weight: 700;
+  margin: 2.2rem 0 0.6rem;
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2rem;
+  line-height: 2.6rem;
+  --gl: 2.6rem;
+  color: var(--title);
+  margin-top: 0;
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 1.5rem;
+  line-height: 2.1rem;
+  --gl: 2.1rem;
+  color: var(--heading);
 }
 
 h3 {
-  font-size: 1.5em;
+  font-size: 1.3rem;
+  line-height: 1.9rem;
+  --gl: 1.9rem;
+  color: var(--subheading);
 }
 
-h4,
-h5,
-h6 {
-  font-size: 1.2em;
+/* ---------- text ---------- */
+
+p {
+  margin: 0 0 1rem;
+}
+
+b {
+  color: var(--green);
+}
+
+/* tech line under the title */
+p > i:only-child {
+  color: var(--comment);
 }
 
 a {
-  color: #e0a96d;
-  text-decoration: none;
-  border-bottom: 2px solid #e0a96d;
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 a:hover {
-  color: #f4a261;
-  border-color: #f4a261;
+  color: var(--link-hover);
+  text-decoration-color: var(--link-hover);
 }
+
+/* ---------- lists ---------- */
 
 ul,
 ol {
-  padding-left: 30px;
+  margin: 0 0 1rem;
+  padding-left: 0;
 }
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+ul li::before {
+  content: "-";
+  position: absolute;
+  left: 0.2rem;
+  color: var(--purple);
+}
+
+ol {
+  padding-left: 1.8rem;
+}
+
+ol li::marker {
+  color: var(--purple);
+}
+
+/* ---------- code ---------- */
 
 code {
-  background-color: #3c3c42;
-  border-radius: 6px;
-  color: #e9c46a;
-  padding: 0.4em 0.6em;
-  font-family: "Courier New", monospace;
-}
-
-pre code {
-  padding: 0;
+  font-family: inherit;
+  font-size: 0.9em;
+  background: var(--bg-deep);
+  color: var(--peach);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
 }
 
 pre {
-  background-color: #3c3c42;
-  border-radius: 6px;
-  padding: 1em;
-  overflow: auto;
-  box-shadow: 2px 2px 6px #000;
+  --gt: 1rem;
+  --gl: 1.35rem;
+  margin: 0 0 1.2rem;
+  padding: 1rem 1.2rem;
+  background: var(--bg-deep);
+  border: 1px solid var(--gutter-line);
+  border-radius: 4px;
+  font-family: inherit;
+  line-height: 1.35rem;
 }
 
+/* scroll the code, not the pre, so the line number isn't clipped */
+pre code {
+  display: block;
+  overflow-x: auto;
+  background: none;
+  color: var(--code-text);
+  padding: 0;
+  font-size: 0.87rem;
+}
+
+/* ---------- quotes + images ---------- */
+
 blockquote {
-  background-color: #2e2c35;
-  border-left: 4px solid #8d99ae;
-  padding-left: 2em;
-  margin-left: 0;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  padding-right: 0.5em;
-  color: #ddd;
+  --gt: 0.6rem;
+  margin: 1.2rem 0;
+  padding: 0.6rem 1rem;
+  background: rgba(138, 124, 240, 0.08);
+  border-left: 3px solid var(--purple);
+  color: #a9b8c2;
   font-style: italic;
 }
 
 img {
+  display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 6px;
-  border: 3px solid #3c3c42;
-  box-shadow: 3px 3px 6px #000;
+  border: 1px solid var(--gutter-line);
+  border-radius: 4px;
 }
 
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+/* ---------- statusline ---------- */
+
+body::before,
+body::after {
+  position: fixed;
+  bottom: 0;
+  height: 26px;
+  line-height: 26px;
+  font-size: 0.75rem;
+  z-index: 10;
 }
 
-::-webkit-scrollbar-track {
-  background: #1f1c25;
-  border-radius: 6px;
+body::after {
+  content: "travisdotdev.github.io    utf-8 · unix    markdown ";
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  text-align: right;
+  white-space: pre;
+  background: var(--bg-deep);
+  color: var(--comment);
+  border-top: 1px solid var(--gutter-line);
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #3c3c42;
-  border-radius: 6px;
-  border: 3px solid #1f1c25;
+body::before {
+  content: " NORMAL ";
+  left: 0;
+  padding: 0 10px;
+  background: var(--title);
+  color: var(--bg-deep);
+  font-weight: 700;
+  z-index: 11;
+  white-space: pre;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: #5a5466;
-}
+/* ---------- misc ---------- */
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #3c3c42 #1f1c25;
+  scrollbar-color: var(--line-nr) var(--bg);
 }
 
-::-webkit-scrollbar-corner {
-  background: #1f1c25;
+@media (max-width: 640px) {
+  article {
+    padding: 28px 16px 24px;
+  }
+
+  article > div {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  article > div > *::after,
+  article::after {
+    display: none;
+  }
+
+  body::after {
+    content: "utf-8 · unix ";
+  }
 }

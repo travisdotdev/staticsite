@@ -1,6 +1,7 @@
 # 🌱 WattPrint — HackEurope
 
 ![LandingPage](/images/wattprintdashboard.png)
+
 _React · Node.js · Stripe · AWS Lambda · Supabase_
 
 A carbon emissions tracking platform built at HackEurope. Tracks device energy usage, processes carbon offset purchases via Stripe Climate, and visualises everything through a React dashboard.
