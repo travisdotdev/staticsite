@@ -40,5 +40,19 @@ A CLI agent that uses LLM function calling to autonomously navigate directories,
 
  [Read more](/nixos-dotfiles) · [GitHub](https://github.com/travisdotdev/nixos-dotfiles)
 
- [← Home](/)
+### RecipeHub
+
+_Java · Spring Boot · React · MySQL · Docker_
+
+ 
+A full-stack recipe search app the Spring Boot API. 
+Includes a cached and rate-limited client for the Spoonacular recipe API, React data-fetching hooks and the Docker Compose setup.
+
+
+ 
+[Read more](/recipehub) · [GitHub](https://github.com/travisdotdev/recipehub)
+
+
+
+[← Home](/)
  

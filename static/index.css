@@ -2,8 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap");
 
 :root {
-  --bg: #242e34; /* darker than nova's base00 for contrast */
-  --bg-deep: #1b2328; /* code blocks, statusline */
+  --bg: #242e34; 
+  --bg-deep: #1b2328; 
   --gutter-line: #33414a;
   --line-nr: #556873;
   --comment: #899ba6;
@@ -306,4 +306,39 @@ body::before {
   body::after {
     content: "utf-8 · unix ";
   }
+}
+
+/* ---------- landing page buttons ---------- */
+
+p:has(> a[href^="mailto:"]) {
+  font-size: 0;
+}
+
+p:has(> a[href^="mailto:"]) a,
+article > div:has(a[href^="mailto:"]) p > a[href$="/projects"]:only-child {
+  display: inline-block;
+  margin: 0.2rem 0.6rem 0.2rem 0;
+  padding: 0.1rem 0.9rem;
+  font-size: 1rem;
+  line-height: 1.7rem;
+  border: 1px solid var(--gutter-line);
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+p:has(> a[href^="mailto:"]) a:hover {
+  border-color: var(--link-hover);
+}
+
+article > div:has(a[href^="mailto:"]) a[href$="/projects"] {
+  background: var(--link);
+  border-color: var(--link);
+  color: var(--bg-deep);
+  font-weight: 700;
+}
+
+article > div:has(a[href^="mailto:"]) a[href$="/projects"]:hover {
+  background: var(--link-hover);
+  border-color: var(--link-hover);
+  color: var(--bg-deep);
 }

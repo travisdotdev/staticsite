@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RecipeHub</title>
+    <link href="/staticsite/index.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <article><div><h1>RecipeHub</h1><p><img src="/staticsite/images/recipehub.jpg" alt="RecipeHub homepage"></img></p><p><i>Java · Spring Boot · React · MySQL · Docker</i></p><p>A full-stack recipe discovery app. You can browse featured recipes, search by dish or by the ingredients you already have, follow step-by-step instructions, and build a printable shopping list from any recipe.</p><p><a href="https://github.com/travisdotdev/recipehub">View on GitHub</a></p><h2>About the project</h2><ul><li><b>Backend architecture:</b> split the backend into a recipe service and a dedicated client for the Spoonacular recipe API, and reworked the endpoints and response models</li><li><b>Frontend structure:</b> rebuilt the homepage around custom React hooks for API calls, and refactored the recipe cards, carousel and detail page</li><li><b>Search:</b> added the search-type options (by dish or by ingredients) and connected search to the navbar</li><li><b>Docker and testing:</b> containerised the app with Docker Compose and wrote backend and frontend tests</li></ul><h2>How it works</h2><pre><code>React frontend (port 3000)
+   |  REST
+   v
+Spring Boot API (port 8080)
+   |  cache + rate limiter
+   v
+Spoonacular API
+</code></pre><p>The backend sits between the frontend and Spoonacular, so the API key never reaches the browser. Recipe responses are cached in memory for two minutes, recipe lists are also stored in MySQL through Spring Data JPA, and a per-minute and per-day limiter keeps usage within Spoonacular's free plan.</p><h2>Running it locally</h2><p>Needs Docker and a free Spoonacular API key.</p><pre><code>git clone https://github.com/travisdotdev/recipehub.git
+cd recipehub
+export SPOONACULAR_API_KEY=your-key
+docker compose up --build
+</code></pre><p>Then open localhost:3000 in your browser.</p><p><a href="/staticsite/projects">← Projects</a></p></div></article>
+  </body>
+</html>

@@ -1,20 +1,32 @@
-![hero](/images/code.jpg)
+# Travis Yusuf
 
-# Travis
+Computer Science and Business student at Trinity College Dublin.
 
-**Aspiring Software Engineer · Full-Stack · Ireland**
+I like understanding how things work underneath, so I build them myself like the static site generator behind this page!
 
-[GitHub](https://github.com/travisdotdev)
+[Projects](/projects) · [GitHub](https://github.com/travisdotdev) · [LinkedIn](https://www.linkedin.com/in/travis-y/) · [Email](mailto:yusuft@tcd.ie)
 
-[Projects](/projects)
+## Projects
 
-## About
+- [RecipeHub](https://github.com/travisdotdev/recipehub): full-stack recipe search app in Java, Spring Boot, React and MySQL
+- [Unix shell](/chell) and [HTTP server](https://github.com/travisdotdev/http%5Fserver%5Fc) written in C on POSIX system calls
+- [Static site generator](/staticsite) in Python that builds this site
 
-CS and Business student.
-I like building things from scratch and diving past abstraction layers.
+[See all projects →](/projects)
+
+## Experience
+
+- **IBM, Trinity industry project (2025):** AI team lead on an agentic web app for automated code security review
+- **IBM, Trinity industry project (2024):** built an EU AI Act compliance tool with React and Flask, which won the public choice award at Trinity
 
 ## Skills
 
-Python · JavaScript · React · Docker · FastAPI · SQL
+**Languages:** Python · Java · C · JavaScript · SQL · Bash · Lua · Nix
 
-> 🚧 Full portfolio coming soon — check back later.
+**Frameworks:** Spring Boot · FastAPI
+
+**Tools:** Linux (NixOS, Ubuntu) · Git · Docker · GitLab CI/CD
+
+## Education
+
+**Trinity College Dublin:** B.Sc. Computer Science, Minor in Business (expected May 2028)
