@@ -8,6 +8,12 @@
   </head>
 
   <body>
+    <nav>
+      <a href="/staticsite/">Travis Yusuf</a>
+      <a href="/staticsite/projects">Projects</a>
+      <a href="/staticsite/likes">Things I like</a>
+      <a href="https://github.com/travisdotdev">GitHub</a>
+    </nav>
     <article><div><h1>❄️ NixOS Dotfiles</h1><p><img src="/staticsite/images/nixos-desktop.jpg" alt="Desktop"></img></p><p><i>Nix · Home Manager · Hyprland · Lua</i></p><p>A declarative NixOS configuration for a Hyprland desktop, managed with flakes and Home Manager. Built from scratch rather than forked, and kept deliberately minimal with a terminal-focused workflow.</p><p><a href="https://github.com/travisdotdev/nixos-dotfiles">View on GitHub</a></p><h2>What's in it</h2><ul><li><b>Compositor</b> — Hyprland (with XWayland)</li><li><b>Bar</b> — Waybar</li><li><b>Terminal</b> — foot</li><li><b>Launcher</b> — fuzzel</li><li><b>Editor</b> — Neovim</li><li><b>File manager</b> — yazi</li><li><b>Display manager</b> — SDDM (Wayland, Catppuccin Mocha)</li><li><b>Lock / idle</b> — hyprlock and hypridle</li><li><b>Audio</b> — PipeWire with ALSA and PulseAudio compatibility</li></ul><h2>Structure</h2><p>The system is split between Nix and native config files. Anything Nix can express declaratively lives in <code>home.nix</code>, while programs with their own config languages keep their native files under <code>config/</code>.</p><pre><code>nixos-dotfiles/
 ├── flake.nix                   # inputs and the system definition
 ├── configuration.nix           # system-level config

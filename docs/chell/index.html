@@ -8,6 +8,12 @@
   </head>
 
   <body>
+    <nav>
+      <a href="/staticsite/">Travis Yusuf</a>
+      <a href="/staticsite/projects">Projects</a>
+      <a href="/staticsite/likes">Things I like</a>
+      <a href="https://github.com/travisdotdev">GitHub</a>
+    </nav>
     <article><div><h1>🐚 chell</h1><p><i>C · POSIX · Linux</i></p><p>A small Unix shell written in C, built to understand what really happens when you type a command into a terminal: process creation, program replacement, and the parent/child relationship behind every command.</p><p><a href="https://github.com/travisdotdev/chell">View on GitHub</a></p><blockquote>🚧 Work in progress,  currently reads and executes a single command, then exits.</blockquote><h2>How it works</h2><p>Each command goes through four steps:</p><ol><li><b>Read</b> — <code>fgets</code> pulls a line from stdin and the trailing newline is trimmed</li><li><b>Tokenize</b> — <code>strtok</code> splits the line on spaces into a NULL-terminated <code>argv</code> array</li><li><b>Fork</b> — the process duplicates itself, producing a parent and a child</li><li><b>Exec</b> — the child calls <code>execvp</code>, replacing its memory image with the target program, while the parent blocks in <code>wait</code> until it finishes</li></ol><h2>No shortcuts</h2><p>The interesting constraint is doing everything with raw POSIX primitives (<code>fork</code>, <code>execvp</code>, <code>wait</code>) rather than calling <code>system()</code>, which would just hand the hard parts back to <code>/bin/sh</code>.</p><h2>Features</h2><ul><li>Commands are resolved through <code>PATH</code>, so anything installed on your system works</li><li>Arguments are passed straight through to the target program</li><li>Can compile itself</li></ul><h2>Running it locally</h2><p>Requires <code>gcc</code> and a POSIX system.</p><pre><code>git clone https://github.com/travisdotdev/chell.git
 cd chell
 mkdir -p bin

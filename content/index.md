@@ -4,13 +4,14 @@ Computer Science and Business student at Trinity College Dublin.
 
 I like understanding how things work underneath, so I build them myself like the static site generator behind this page!
 
-[Projects](/projects) · [GitHub](https://github.com/travisdotdev) · [LinkedIn](https://www.linkedin.com/in/travis-y/) · [Email](mailto:yusuft@tcd.ie)
+[Projects](/projects) [GitHub](https://github.com/travisdotdev) [LinkedIn](https://www.linkedin.com/in/travis-y/) [Email](mailto:yusuft@tcd.ie)
 
 ## Projects
 
-- [RecipeHub](https://github.com/travisdotdev/recipehub): full-stack recipe search app in Java, Spring Boot, React and MySQL
-- [Unix shell](/chell) and [HTTP server](https://github.com/travisdotdev/http%5Fserver%5Fc) written in C on POSIX system calls
-- [Static site generator](/staticsite) in Python that builds this site
+- [🍳 RecipeHub](/recipehub) Full-stack recipe search app in Java, Spring Boot, React and MySQL
+- [🐚 Unix Shell](/chell) A shell in C that runs programs with fork, execvp and wait
+- [🌐 HTTP Server](https://github.com/travisdotdev/http%5Fserver%5Fc) HTTP/1.1 server in C on raw POSIX sockets
+- [⚡ Static Site Generator](/staticsite) The Python generator that builds this site
 
 [See all projects →](/projects)
 
@@ -30,3 +31,5 @@ I like understanding how things work underneath, so I build them myself like the
 ## Education
 
 **Trinity College Dublin:** B.Sc. Computer Science, Minor in Business (expected May 2028)
+
+[Things I like →](/likes)

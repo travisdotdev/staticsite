@@ -8,6 +8,12 @@
   </head>
 
   <body>
+    <nav>
+      <a href="/staticsite/">Travis Yusuf</a>
+      <a href="/staticsite/projects">Projects</a>
+      <a href="/staticsite/likes">Things I like</a>
+      <a href="https://github.com/travisdotdev">GitHub</a>
+    </nav>
     <article><div><h1>RecipeHub</h1><p><img src="/staticsite/images/recipehub.jpg" alt="RecipeHub homepage"></img></p><p><i>Java · Spring Boot · React · MySQL · Docker</i></p><p>A full-stack recipe discovery app. You can browse featured recipes, search by dish or by the ingredients you already have, follow step-by-step instructions, and build a printable shopping list from any recipe.</p><p><a href="https://github.com/travisdotdev/recipehub">View on GitHub</a></p><h2>About the project</h2><ul><li><b>Backend architecture:</b> split the backend into a recipe service and a dedicated client for the Spoonacular recipe API, and reworked the endpoints and response models</li><li><b>Frontend structure:</b> rebuilt the homepage around custom React hooks for API calls, and refactored the recipe cards, carousel and detail page</li><li><b>Search:</b> added the search-type options (by dish or by ingredients) and connected search to the navbar</li><li><b>Docker and testing:</b> containerised the app with Docker Compose and wrote backend and frontend tests</li></ul><h2>How it works</h2><pre><code>React frontend (port 3000)
    |  REST
    v

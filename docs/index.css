@@ -72,7 +72,6 @@ article > div > *::after {
   pointer-events: none;
 }
 
-/* offset the numbers by the block's own left border */
 article > div > pre::after {
   left: -81px;
 }
@@ -81,12 +80,10 @@ article > div > blockquote::after {
   left: -83px;
 }
 
-/* "cursorline": the hovered block's number lights up */
 article > div > *:hover::after {
   color: var(--peach);
 }
 
-/* tildes past the end of the buffer */
 article > div > *:last-child {
   margin-bottom: 1.2rem;
 }
@@ -143,7 +140,6 @@ b {
   color: var(--green);
 }
 
-/* tech line under the title */
 p > i:only-child {
   color: var(--comment);
 }
@@ -216,7 +212,6 @@ pre {
   line-height: 1.35rem;
 }
 
-/* scroll the code, not the pre, so the line number isn't clipped */
 pre code {
   display: block;
   overflow-x: auto;
@@ -308,37 +303,127 @@ body::before {
   }
 }
 
-/* ---------- landing page buttons ---------- */
+/* ---------- link buttons ---------- */
 
-p:has(> a[href^="mailto:"]) {
-  font-size: 0;
-}
-
-p:has(> a[href^="mailto:"]) a,
-article > div:has(a[href^="mailto:"]) p > a[href$="/projects"]:only-child {
+p > a {
   display: inline-block;
-  margin: 0.2rem 0.6rem 0.2rem 0;
-  padding: 0.1rem 0.9rem;
-  font-size: 1rem;
-  line-height: 1.7rem;
+  margin: 0.2rem 0.5rem 0.2rem 0;
+  padding: 0.05rem 0.9rem;
   border: 1px solid var(--gutter-line);
   border-radius: 4px;
   text-decoration: none;
 }
 
-p:has(> a[href^="mailto:"]) a:hover {
+p > a:hover {
   border-color: var(--link-hover);
 }
 
-article > div:has(a[href^="mailto:"]) a[href$="/projects"] {
+/* ---------- landing page ---------- */
+
+article > div:has(a[href^="mailto:"]) > ul:first-of-type {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+  margin: 0.4rem 0 1.4rem;
+}
+
+article > div:has(a[href^="mailto:"]) > ul:first-of-type li {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--gutter-line);
+  border-radius: 6px;
+  color: var(--comment);
+  line-height: 1.5rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+article > div:has(a[href^="mailto:"]) > ul:first-of-type li::before {
+  content: none;
+}
+
+article > div:has(a[href^="mailto:"]) > ul:first-of-type li:hover {
+  border-color: var(--link);
+  background: rgba(91, 148, 230, 0.06);
+}
+
+article > div:has(a[href^="mailto:"]) > ul:first-of-type li > a {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--peach);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+article > div:has(a[href^="mailto:"]) > ul:first-of-type li > a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+article > div:has(a[href^="mailto:"]) p:has(> a[href$="/projects"]:only-child) {
+  text-align: center;
+}
+
+article > div:has(a[href^="mailto:"]) p > a[href$="/projects"]:only-child {
   background: var(--link);
   border-color: var(--link);
   color: var(--bg-deep);
   font-weight: 700;
 }
 
-article > div:has(a[href^="mailto:"]) a[href$="/projects"]:hover {
+article > div:has(a[href^="mailto:"]) p > a[href$="/projects"]:only-child:hover {
   background: var(--link-hover);
   border-color: var(--link-hover);
   color: var(--bg-deep);
+}
+
+@media (max-width: 640px) {
+  article > div:has(a[href^="mailto:"]) > ul:first-of-type {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- top bar (tabline) ---------- */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--gutter-line);
+  font-size: 0.85rem;
+}
+
+nav a {
+  padding: 0 0.9rem;
+  line-height: 2.2rem;
+  color: var(--comment);
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: var(--text);
+  background: var(--bg);
+}
+
+nav a:first-child {
+  background: var(--title);
+  color: var(--bg-deep);
+  font-weight: 700;
+}
+
+nav a:first-child:hover {
+  background: var(--link-hover);
+  color: var(--bg-deep);
+}
+
+@media (max-width: 640px) {
+  nav {
+    font-size: 0.8rem;
+  }
+
+  nav a {
+    padding: 0 0.55rem;
+  }
 }
